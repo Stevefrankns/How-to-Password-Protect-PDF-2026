@@ -1,0 +1,982 @@
+<!-- Replace YOUR-DOMAIN.com before launch -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How to Password Protect a PDF — Free and Easy Methods 2025</title>
+<meta content="Learn how to password protect a PDF file using free tools, native OS features, and secure software. We explain open vs permissions passwords and rank the best methods." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --color-bg: #000000;
+      --color-surface: #0A0A0A;
+      --color-surface-2: #101010;
+      --color-primary-accent: #FFE500;
+      --color-secondary-accent: #FF00AA;
+      --color-tertiary: #00FFFF;
+      --color-grid: rgba(255,229,0,0.08);
+      --color-body-text: #E8E8E8;
+      --color-muted: #A7A7A7;
+      --color-black: #000000;
+      --color-white: #FFFFFF;
+      --font-heading: 'Barlow Condensed', sans-serif;
+      --font-body: 'Share Tech Mono', monospace;
+      --max-reading-width: 760px;
+      --max-wide-width: 1120px;
+      --section-padding-v: 92px;
+      --transition-speed: 0.22s;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+    html { scroll-behavior: smooth; font-size: 16px; background: #000; }
+    body {
+      font-family: var(--font-body);
+      color: var(--color-body-text);
+      background:
+        linear-gradient(var(--color-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-grid) 1px, transparent 1px),
+        #000000;
+      background-size: 44px 44px;
+      line-height: 1.78;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 5px),
+        radial-gradient(circle at 18% 12%, rgba(255,0,170,0.14), transparent 28%),
+        radial-gradient(circle at 82% 34%, rgba(0,255,255,0.10), transparent 32%);
+      mix-blend-mode: screen;
+    }
+    body > *:not(.data-stream) { position: relative; z-index: 2; }
+
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-heading);
+      color: var(--color-white);
+      line-height: 0.96;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.055em;
+    }
+    h1 {
+      font-size: clamp(3.25rem, 9vw, 5.5rem);
+      font-weight: 800;
+      color: #fff;
+      -webkit-text-stroke: 1px var(--color-primary-accent);
+      text-shadow: 4px 0 rgba(255,0,170,0.6), -4px 0 rgba(0,255,255,0.45);
+      animation: glitchReveal 800ms steps(2, end) 120ms both, neonPulse 4.5s linear 1.2s infinite;
+      position: relative;
+    }
+    h1::before, h1::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+    }
+    h1::before { color: var(--color-secondary-accent); clip-path: inset(12% 0 68% 0); transform: translate(6px, -2px); }
+    h1::after { color: var(--color-tertiary); clip-path: inset(64% 0 12% 0); transform: translate(-6px, 2px); }
+    h1.glitch-title::before, h1.glitch-title::after { animation: glitchSlice 800ms steps(2, end) 120ms both; }
+    .neon-fill {
+      color: var(--color-primary-accent);
+      -webkit-text-stroke: 0 transparent;
+      text-shadow: 0 0 8px rgba(255,229,0,0.85), 0 0 16px rgba(255,229,0,0.55);
+    }
+    h2 {
+      font-size: clamp(2.25rem, 5.2vw, 3.55rem);
+      font-weight: 800;
+      color: var(--color-primary-accent);
+      text-shadow: 0 0 10px rgba(255,229,0,0.42);
+      margin-top: 2rem;
+      animation: neonPulse 5s infinite;
+    }
+    h2::before {
+      content: "SYSTEM: ";
+      color: var(--color-secondary-accent);
+      text-shadow: 0 0 10px rgba(255,0,170,0.55);
+    }
+    h3 {
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--color-tertiary);
+      margin-top: 1.8rem;
+      text-shadow: 0 0 8px rgba(0,255,255,0.45);
+    }
+    p { margin-bottom: 1.25rem; color: var(--color-body-text); }
+    strong { color: var(--color-primary-accent); font-weight: 400; }
+    em { color: var(--color-tertiary); font-style: normal; }
+    a {
+      color: var(--color-primary-accent);
+      text-decoration: none;
+      font-weight: 400;
+      border-bottom: 1px solid rgba(255,229,0,0.55);
+      transition: color var(--transition-speed), text-shadow var(--transition-speed), border-color var(--transition-speed);
+    }
+    a:hover {
+      color: var(--color-tertiary);
+      border-color: var(--color-tertiary);
+      text-shadow: 0 0 10px rgba(0,255,255,0.85);
+    }
+    img, svg { max-width: 100%; height: auto; display: block; }
+
+    .data-stream {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      color: var(--color-primary-accent);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.85;
+      opacity: 0.04;
+    }
+    .data-stream span {
+      position: absolute;
+      top: -60vh;
+      white-space: nowrap;
+      animation: dataFall 18s linear infinite;
+    }
+    .data-stream span:nth-child(1) { left: 6%; animation-duration: 17s; }
+    .data-stream span:nth-child(2) { left: 22%; animation-duration: 22s; animation-delay: -6s; color: var(--color-tertiary); }
+    .data-stream span:nth-child(3) { left: 41%; animation-duration: 19s; animation-delay: -10s; }
+    .data-stream span:nth-child(4) { left: 60%; animation-duration: 24s; animation-delay: -4s; color: var(--color-secondary-accent); }
+    .data-stream span:nth-child(5) { left: 77%; animation-duration: 21s; animation-delay: -14s; }
+    .data-stream span:nth-child(6) { left: 91%; animation-duration: 26s; animation-delay: -8s; color: var(--color-tertiary); }
+
+    .container-reading { max-width: var(--max-reading-width); margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: var(--max-wide-width); margin: 0 auto; padding: 0 24px; }
+    .section {
+      padding: var(--section-padding-v) 0;
+      border-top: 1px solid rgba(255,229,0,0.22);
+      background:
+        linear-gradient(180deg, rgba(255,229,0,0.035), transparent 180px),
+        #000;
+    }
+    .section-alt {
+      background:
+        linear-gradient(var(--color-grid) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,170,0.06) 1px, transparent 1px),
+        #070707;
+      background-size: 38px 38px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      border: 1px solid var(--color-primary-accent);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background-color: var(--color-primary-accent);
+      color: #000 !important;
+      border-color: var(--color-primary-accent);
+      box-shadow: none;
+    }
+    .btn-primary:hover {
+      color: #000 !important;
+      box-shadow: 0 0 18px rgba(255,229,0,0.85), 0 0 36px rgba(255,229,0,0.35);
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-secondary-accent);
+      border: 1px solid var(--color-secondary-accent);
+    }
+    .btn-outline:hover {
+      color: var(--color-secondary-accent);
+      background: rgba(255,0,170,0.08);
+      box-shadow: 0 0 18px rgba(255,0,170,0.75), 0 0 36px rgba(255,0,170,0.25);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,229,0,0.42);
+      z-index: 100;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      width: 100%;
+      max-width: var(--max-wide-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.22rem;
+      color: var(--color-primary-accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      border-bottom: 0;
+    }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 0 8px rgba(255,229,0,0.65));
+      animation: neonPulse 5s infinite;
+    }
+    .brand-mark svg { width: 36px; height: 36px; }
+    .brand-text { display: inline-block; padding-top: 2px; }
+    .nav-desktop { display: flex; gap: 24px; align-items: center; }
+    .nav-link {
+      color: var(--color-muted);
+      font-size: 0.82rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 0;
+    }
+    .nav-link:hover { color: var(--color-primary-accent); text-shadow: 0 0 10px rgba(255,229,0,0.8); }
+
+    .hero {
+      position: relative;
+      background: #000;
+      padding: 98px 0 70px;
+      border-bottom: 1px solid rgba(255,229,0,0.38);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, var(--color-grid) 0 1px, transparent 1px 42px),
+        repeating-linear-gradient(90deg, var(--color-grid) 0 1px, transparent 1px 42px);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -1px;
+      height: 1px;
+      background: var(--color-primary-accent);
+      box-shadow: 0 0 14px var(--color-primary-accent), 0 0 26px rgba(255,229,0,0.55);
+      animation: gridScan 8s linear infinite;
+      pointer-events: none;
+    }
+    .breadcrumb {
+      font-size: 0.86rem;
+      color: var(--color-tertiary);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 8px rgba(0,255,255,0.48);
+    }
+    .hero p[style] { color: var(--color-body-text) !important; }
+    .quick-answer,
+    .toc-card,
+    .faq-card,
+    .signature-quote,
+    .terminal-dashboard {
+      background: rgba(10,10,10,0.94) !important;
+      border: 1px solid rgba(255,229,0,0.56) !important;
+      color: var(--color-body-text);
+      box-shadow: inset 0 0 0 1px rgba(255,229,0,0.08), 0 0 24px rgba(255,229,0,0.08) !important;
+      position: relative;
+      overflow: hidden;
+    }
+    .quick-answer,
+    .toc-card,
+    .faq-card {
+      padding: 26px;
+    }
+    .quick-answer::before,
+    .toc-card::before,
+    .faq-card::before,
+    .terminal-dashboard::before,
+    .signature-quote::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: conic-gradient(from 0deg, transparent, var(--color-primary-accent), transparent 28%, transparent 100%);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity var(--transition-speed);
+    }
+    .quick-answer:hover::before,
+    .toc-card:hover::before,
+    .faq-card:hover::before,
+    .terminal-dashboard:hover::before {
+      opacity: 1;
+      animation: borderCrawl 1.3s linear infinite;
+    }
+    .quick-answer-label {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-primary-accent);
+      font-weight: 400;
+      margin-bottom: 8px;
+      display: block;
+      text-shadow: 0 0 8px rgba(255,229,0,0.6);
+    }
+
+    .toc-card { margin: 42px auto; }
+    .toc-list { list-style: none; display: grid; gap: 12px; }
+    .toc-list a { color: var(--color-body-text); font-weight: 400; display: inline-flex; align-items: center; gap: 10px; border-bottom: 0; }
+    .toc-list a::before { content: ">"; color: var(--color-primary-accent); text-shadow: 0 0 8px rgba(255,229,0,0.8); }
+
+    ul.editorial-list { list-style: none; margin-bottom: 1.5rem; }
+    ul.editorial-list li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--color-body-text); }
+    ul.editorial-list li::before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--color-primary-accent);
+      text-shadow: 0 0 8px rgba(255,229,0,0.75);
+    }
+    div[style*="background-color: var(--color-secondary-accent)"],
+    div[style*="background-color: #ffeae6"] {
+      background: rgba(10,10,10,0.95) !important;
+      border: 1px solid rgba(255,0,170,0.68) !important;
+      border-left: 1px solid rgba(255,0,170,0.68) !important;
+      padding: 24px !important;
+      box-shadow: 0 0 18px rgba(255,0,170,0.12) !important;
+    }
+    div[style*="background-color: #ffeae6"] strong {
+      color: var(--color-secondary-accent) !important;
+      text-shadow: 0 0 8px rgba(255,0,170,0.58);
+    }
+
+    .content-image {
+      margin: 2.4rem 0;
+      border: 1px solid rgba(255,229,0,0.46);
+      background: #050505;
+      padding: 10px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 24px rgba(255,229,0,0.07);
+    }
+    .content-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(255,0,170,0.15), transparent 22%, transparent 78%, rgba(0,255,255,0.12)),
+        repeating-linear-gradient(0deg, transparent 0 11px, rgba(255,229,0,0.055) 11px 12px);
+      mix-blend-mode: screen;
+    }
+    .content-image img {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      background: #000;
+    }
+    .hero-image { margin-top: 2rem; }
+    .product-visual-stack {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 140px;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .product-screen, .product-boxshot {
+      margin: 0;
+      padding: 8px;
+    }
+    .product-boxshot img {
+      max-height: 240px;
+      width: auto;
+      margin: 0 auto;
+    }
+
+    .signature-quote {
+      margin: 3rem 0;
+      padding: 2rem;
+      font-size: 1.05rem;
+      font-style: normal;
+      color: var(--color-body-text);
+      border-color: rgba(0,255,255,0.55) !important;
+    }
+    .signature-quote::before {
+      content: ">";
+      position: static;
+      display: inline-block;
+      width: auto;
+      height: auto;
+      background: transparent;
+      box-shadow: none;
+      transform: none;
+      margin-right: 10px;
+      color: var(--color-tertiary);
+      text-shadow: 0 0 10px rgba(0,255,255,0.8);
+    }
+
+    .saas-band {
+      background:
+        radial-gradient(circle at 78% 22%, rgba(255,0,170,0.16), transparent 32%),
+        radial-gradient(circle at 22% 70%, rgba(0,255,255,0.10), transparent 30%),
+        #000;
+      color: var(--color-white);
+      padding: 110px 0;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,229,0,0.35);
+      border-bottom: 1px solid rgba(255,229,0,0.35);
+    }
+    .saas-band::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, rgba(255,229,0,0.08) 0 1px, transparent 1px 48px),
+        repeating-linear-gradient(90deg, rgba(255,229,0,0.08) 0 1px, transparent 1px 48px);
+      pointer-events: none;
+    }
+    .saas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .saas-band h2, .saas-band h3 { color: var(--color-primary-accent); }
+    .saas-band p { color: rgba(232,232,232,0.9); }
+
+    .terminal-dashboard {
+      padding: 24px !important;
+      box-shadow: 0 0 28px rgba(255,229,0,0.16), inset 0 0 18px rgba(0,255,255,0.05) !important;
+    }
+    .terminal-dashboard div[style*="background: rgba(255,255,255,0.05)"] {
+      background: rgba(255,229,0,0.05) !important;
+      border: 1px solid rgba(0,255,255,0.28);
+      padding: 12px !important;
+    }
+    .terminal-dashboard div[style*="color: #4ade80"] {
+      color: var(--color-tertiary) !important;
+      text-shadow: 0 0 8px rgba(0,255,255,0.7);
+    }
+
+    .faq-masonry { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; align-items: start; }
+    .faq-card h3::before { content: "> "; color: var(--color-primary-accent); }
+    .faq-card h3 { color: var(--color-primary-accent); font-family: var(--font-body); letter-spacing: 0.02em; line-height: 1.3; }
+    .faq-image { max-width: 760px; margin: 0 auto 3rem; }
+
+    .system-hack-loader {
+      margin: 2rem 0 2.3rem;
+      border: 1px solid rgba(0,255,255,0.45);
+      background: #020202;
+      padding: 16px;
+      color: #16ff72;
+      box-shadow: 0 0 20px rgba(0,255,255,0.08);
+      overflow: hidden;
+    }
+    .hack-title {
+      color: #16ff72;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-shadow: 0 0 10px rgba(22,255,114,0.65);
+    }
+    .hack-window {
+      position: relative;
+      height: 56px;
+      border: 1px solid rgba(22,255,114,0.55);
+      overflow: hidden;
+      background: repeating-linear-gradient(0deg, rgba(22,255,114,0.16) 0 1px, transparent 1px 7px);
+    }
+    .hack-window::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: -20px;
+      height: 18px;
+      background: rgba(22,255,114,0.7);
+      box-shadow: 0 0 18px rgba(22,255,114,0.9);
+      animation: hackSweep 1.5s ease-in-out infinite;
+    }
+    .hack-window span {
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      background: rgba(22,255,114,0.45);
+      animation: hackNoise 900ms steps(2,end) infinite;
+    }
+    .hack-window span:nth-child(1){ top: 14px; }
+    .hack-window span:nth-child(2){ top: 25px; animation-delay: .2s; }
+    .hack-window span:nth-child(3){ top: 36px; animation-delay: .45s; }
+    .hack-window span:nth-child(4){ top: 47px; animation-delay: .75s; }
+    .decrypt-heading.is-decrypting { color: var(--color-primary-accent); text-shadow: 0 0 10px rgba(255,229,0,0.85); }
+
+    .site-footer {
+      background-color: #000;
+      color: rgba(255,255,255,0.7);
+      padding: 80px 0 40px;
+      font-size: 0.875rem;
+      border-top: 1px solid rgba(255,229,0,0.4);
+    }
+    .site-footer h4 { color: var(--color-primary-accent) !important; }
+    .site-footer a.logo { margin-bottom: 20px; }
+    .site-footer a:not(.logo) { color: rgba(255,229,0,0.82) !important; }
+    .site-footer div[style*="border-top"] { border-top: 1px solid rgba(255,229,0,0.28) !important; }
+
+    @keyframes glitchReveal {
+      0% { opacity: 0; transform: translateX(-10px); clip-path: inset(0 0 72% 0); }
+      16% { opacity: 1; transform: translateX(6px); clip-path: inset(18% 0 38% 0); }
+      32% { transform: translateX(-6px); clip-path: inset(64% 0 8% 0); }
+      48% { transform: translateX(4px); clip-path: inset(10% 0 74% 0); }
+      72% { transform: translateX(-2px); clip-path: inset(0 0 0 0); }
+      100% { opacity: 1; transform: translateX(0); clip-path: inset(0 0 0 0); }
+    }
+    @keyframes glitchSlice {
+      0%, 100% { opacity: 0; }
+      15%, 55% { opacity: .85; }
+      70% { opacity: .35; }
+    }
+    @keyframes gridScan {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
+    @keyframes borderCrawl {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes neonPulse {
+      0%, 100% { filter: drop-shadow(0 0 0 rgba(255,229,0,0)); }
+      50% { filter: drop-shadow(0 0 10px rgba(255,229,0,0.55)); }
+    }
+    @keyframes dataFall {
+      from { transform: translateY(-60vh); }
+      to { transform: translateY(170vh); }
+    }
+    @keyframes hackSweep {
+      0% { transform: translateY(-20px); }
+      100% { transform: translateY(90px); }
+    }
+    @keyframes hackNoise {
+      0% { transform: translateX(-8px); opacity: 0.2; }
+      100% { transform: translateX(8px); opacity: 0.9; }
+    }
+
+    @media (max-width: 980px) {
+      .nav-desktop { display: none; }
+      .header-inner { justify-content: center; }
+      .saas-grid { grid-template-columns: 1fr; }
+      .product-visual-stack { grid-template-columns: 1fr; }
+      .product-boxshot img { max-height: 220px; }
+    }
+    @media (max-width: 700px) {
+      :root { --section-padding-v: 68px; }
+      .data-stream { display: none; }
+      h1 { font-size: clamp(3.25rem, 16vw, 3.7rem); animation-duration: 400ms; }
+      .hero::after { animation-duration: 12s; }
+      .container-reading, .container-wide { padding: 0 18px; }
+      .faq-masonry { grid-template-columns: 1fr; }
+      .logo { font-size: 1rem; gap: 10px; }
+      .brand-mark, .brand-mark svg { width: 32px; height: 32px; }
+    }
+</style>
+</head>
+<body>
+<div aria-hidden="true" class="data-stream">
+<span>01001010<br/>11100101<br/>00110110<br/>10010111<br/>01100010</span>
+<span>10110010<br/>00100111<br/>11001001<br/>01010100<br/>11101001</span>
+<span>00101110<br/>10101010<br/>01110101<br/>10001001<br/>00110011</span>
+<span>11110000<br/>01000101<br/>10111010<br/>00011101<br/>11010101</span>
+<span>01101101<br/>10010010<br/>00101011<br/>11100100<br/>01011010</span>
+<span>10011100<br/>01100011<br/>11000110<br/>00110101<br/>10101100</span>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="header">
+<div class="header-inner">
+<a class="logo" href="/">
+<span aria-hidden="true" class="brand-mark">
+<svg focusable="false" role="img" viewbox="0 0 48 48">
+<defs>
+<lineargradient id="securityMarkGradient" x1="6" x2="42" y1="6" y2="42">
+<stop offset="0" stop-color="#FFE500"></stop>
+<stop offset="0.52" stop-color="#00FFFF"></stop>
+<stop offset="1" stop-color="#FF00AA"></stop>
+</lineargradient>
+</defs>
+<path d="M24 4 40 10v12c0 10.5-6.8 17.6-16 22C14.8 39.6 8 32.5 8 22V10L24 4Z" fill="#000" stroke="url(#securityMarkGradient)" stroke-width="2.5"></path>
+<path d="M16 25h16M18 19h12M22 13h4M22 31h4" stroke="#FFE500" stroke-linecap="square" stroke-width="2"></path>
+<path d="M17 35 31 13" stroke="#FF00AA" stroke-linecap="square" stroke-width="2"></path>
+</svg>
+</span>
+<span class="brand-text">PDF Security Hub</span></a>
+<nav class="nav-desktop">
+<a class="nav-link" href="#overview">Guide Overview</a>
+<a class="nav-link" href="#methods">Free Methods</a>
+<a class="nav-link" href="#advanced">Advanced Protection</a>
+<a class="nav-link" href="#recommendation">Our Top Pick</a>
+<a class="nav-link" href="#faq">FAQ</a>
+</nav>
+<div class="nav-desktop">
+<a class="btn btn-outline" href="#recommendation" style="padding: 8px 16px; font-size: 0.875rem;">See Recommended Tool →</a>
+</div>
+</div>
+</header>
+<!-- S1 HERO -->
+<section class="hero">
+<div class="container-reading">
+<div class="breadcrumb">Security Guides / Document Protection / PDFs</div>
+<h1 class="glitch-title" data-text="How to Password Protect a PDF — Free and Easy Methods 2025">How to <span class="neon-fill">Password Protect a PDF</span> — Free and Easy Methods 2025</h1>
+<p style="font-size: 1.125rem; color: var(--color-meta-text);">Whether you need to stop unauthorized viewing or simply prevent people from copying and printing your document, here is a complete, honest guide to the best free tools and professional software available today.</p>
+<div class="quick-answer">
+<span class="quick-answer-label">Quick Answer</span>
+<p style="margin: 0;"><strong>The fastest free way to password protect a PDF:</strong> On macOS, open the PDF in <strong>Preview</strong>, click <em>File &gt; Export</em>, check the "Encrypt" box, and enter a password. On Windows, use Microsoft Word's "Encrypt with Password" feature before saving as a PDF. For batch protection, encrypted cloud syncing, or <a href="https://www.cloudwards.net/best-encryption-software/" rel="noopener noreferrer" target="_blank">military-grade AES-256 security</a>, a dedicated desktop application is required.</p>
+</div><figure class="content-image hero-image">
+<img alt="Password protected PDF document represented as a secure digital paper file" loading="lazy" src="https://i.ibb.co/ZRsTRpZQ/sheet-of-virtual-paper.jpg"/>
+</figure>
+</div>
+</section>
+<!-- S2 TOC -->
+<div class="container-reading">
+<div class="toc-card">
+<h3>What's inside this guide</h3>
+<ul class="toc-list">
+<li><a href="#overview">Permissions Password vs Open Password — Explained</a></li>
+<li><a href="#methods">How to Password Protect a PDF — All Free Methods</a></li>
+<li><a href="#advanced">Advanced Security: Memory Decryption &amp; Kernel Hiding</a></li>
+<li><a href="#cloud-sharing">Secure Cloud Syncing &amp; Asymmetric Sharing</a></li>
+<li><a href="#recommendation">The Tool We Recommend for Most Users</a></li>
+<li><a href="#faq">Frequently Asked Questions</a></li>
+</ul>
+</div>
+</div>
+<!-- S3 DIRECT ANSWER & OVERVIEW -->
+<section class="section" id="overview">
+<div class="container-reading">
+<h2>Why Document Password Protection Is Not the Same as Full Encryption</h2>
+<p>When searching for how to <a href="https://www.filecenter.com/blog/best-pdf-encryption-software/" rel="noopener noreferrer" target="_blank">password protect a PDF file</a>, most users assume they are fully encrypting the file to secure standards. While applying a password <em>does</em> add a layer of security, the strength of that protection depends entirely on the method you choose and the type of password you apply.</p>
+<p>Before jumping into the methods, you must understand the two distinct types of PDF passwords. Choosing the wrong one leaves your data vulnerable.</p><figure class="content-image">
+<img alt="Close-up password lock graphic for PDF open password and permissions protection" loading="lazy" src="https://i.ibb.co/LzzGGSL3/Password-Lock.jpg"/>
+</figure>
+<div style="background-color: var(--color-secondary-accent); padding: 24px; border-radius: var(--radius-card); margin: 1.5rem 0;">
+<h3 style="margin-top:0;">Open Password vs Permissions Password — Explained</h3>
+<ul class="editorial-list">
+<li><strong>Document Open Password (User Password):</strong> This locks the file completely. If someone double-clicks the PDF, they are met with a blank screen and a password prompt. Without the password, the document cannot be opened, viewed, or read by anyone.</li>
+<li><strong>Permissions Password (Master Password):</strong> The file opens normally, and anyone can read it without a password. However, functions like printing, copying text, or editing the document are restricted. <em>Note: Permissions passwords are easily bypassed by determined users using free online tools.</em></li>
+</ul>
+</div>
+</div>
+</section>
+<!-- S4 COMPLETE METHODS GUIDE -->
+<section class="section section-alt" id="methods">
+<div class="container-reading">
+<h2>How to Password Protect a PDF — All Free Methods</h2>
+<p>There are several ways to secure a document without paying for expensive subscriptions. Here is how to use the tools you likely already have installed.</p><figure class="content-image">
+<img alt="Locked file cabinet illustrating secure document password protection methods" loading="lazy" src="https://i.ibb.co/MxK9KKXh/file-cabinet-lock.jpg"/>
+</figure>
+
+<div aria-hidden="true" class="system-hack-loader">
+<div class="hack-title">SYSTEM HACK</div>
+<div class="hack-window">
+<span></span><span></span><span></span><span></span>
+</div>
+</div>
+<h3 class="decrypt-heading" data-decrypt="Method 1: Password Protect a PDF on Mac (Preview)">Method 1: Password Protect a PDF on Mac (Preview)</h3>
+<p><a href="https://techpp.com/2013/05/16/password-protect-encrypt-files-mac-windows/" rel="noopener noreferrer" target="_blank">Mac users</a> have a massive advantage: Apple's built-in Preview app includes native PDF encryption. It's fast, free, and happens entirely offline.</p>
+<ul class="editorial-list">
+<li>Double-click your PDF to open it in <strong>Preview</strong>.</li>
+<li>In the top menu bar, click <strong>File</strong> &gt; <strong>Export...</strong></li>
+<li>At the bottom of the export window, check the box labeled <strong>Encrypt</strong>.</li>
+<li>Type your desired password, verify it, and click <strong>Save</strong>.</li>
+</ul><figure class="content-image">
+<img alt="Native macOS interface style for protecting PDF documents with built-in tools" loading="lazy" src="https://i.ibb.co/4Rr8X43J/Native-mac-OS-UI-Experience.jpg"/>
+</figure>
+<h3 class="decrypt-heading" data-decrypt="Method 2: Password Protect a PDF in Adobe Reader (Free vs Pro)">Method 2: Password Protect a PDF in Adobe Reader (Free vs Pro)</h3>
+<p>This is the most common point of confusion. <strong>You cannot password protect a PDF using the free version of Adobe Acrobat Reader.</strong> Adobe reserves all security features for its paid Acrobat Pro subscription. If you only have the free Reader, you will need to use an alternative method.</p>
+<h3 class="decrypt-heading" data-decrypt="Method 3: Password Protect PDF Online — Best Free Tools">Method 3: Password Protect PDF Online — Best Free Tools</h3>
+<p>If you don't use a Mac and don't want to pay for Adobe, web-based tools like ILovePDF or Smallpdf can apply a password.</p>
+<div style="background-color: #ffeae6; padding: 20px; border-radius: 8px; border-left: 4px solid #c93b26; margin-top: 1rem;">
+<strong style="color: #c93b26;">Security Warning:</strong> Never use free online tools for highly sensitive documents (SSNs, bank statements, legal contracts). You are uploading an unencrypted document to a third-party server. Even if they promise to delete it, the transit and temporary storage introduce unnecessary risk.
+      </div>
+</div><figure class="content-image">
+<img alt="Sensitive personal data warning for uploading private documents to online PDF tools" loading="lazy" src="https://i.ibb.co/Zpt5NfpT/sensitive-personal-data.jpg"/>
+</figure>
+</section>
+<!-- NEW DEEP DIVE: ADVANCED PROTECTION (DERIVED FROM CONTEXT) -->
+<section class="section" id="advanced">
+<div class="container-reading">
+<h2>Going Beyond Basics: Military-Grade PDF Security</h2>
+<p>If you manage sensitive corporate data, legal files, or personal financial records, a basic password might not be enough. Professional-grade offline security software approaches PDF protection entirely differently than a standard PDF reader.</p><figure class="content-image">
+<img alt="Military grade file shield protecting confidential PDF files with strong encryption" loading="lazy" src="https://i.ibb.co/C5sfWRJm/Military-Grade-File-Shield.jpg"/>
+</figure>
+<h3>Kernel-Level Folder Hiding</h3>
+<p>Sometimes you don't just want to password-protect a PDF; you want it to disappear completely. Advanced desktop utilities utilize Windows kernel-level filtering. This means the folder containing your PDFs is rendered completely invisible to the operating system. Even if an intruder reboots your computer into Safe Mode to bypass standard software restrictions, the hidden files remain undetectable.</p><figure class="content-image">
+<img alt="Secure folder lockdown concept showing hidden document protection" loading="lazy" src="https://i.ibb.co/Tq1X1cPW/Physical-Folder-Lockdown.jpg"/>
+</figure>
+<h3>On-the-Fly Encryption &amp; Memory Decryption</h3>
+<p>When you use standard software to encrypt a file, it often creates temporary, unencrypted working files on your hard drive. If a hacker inspects your drive, they can recover these fragments.</p>
+<p>Premium tools solve this by utilizing virtual "Lockers." When you drag a PDF into one of these vaults, it is encrypted instantly using AES 256-bit cryptography—the same standard trusted by global defense organizations. More importantly, when you enter your password to view the PDF, the software decrypts the data dynamically in your computer's active memory (RAM), not on the physical hard drive. Once you close the file, the memory clears, leaving absolutely zero footprints behind for data recovery tools to find.</p><figure class="content-image">
+<img alt="Secure virtual drive used for encrypted PDF lockers and memory based decryption" loading="lazy" src="https://i.ibb.co/q3LHT6Kb/Secure-Virtual-Drive.jpg"/>
+</figure>
+<blockquote class="signature-quote">
+        "True data security ensures that when a file is closed, there is nothing left on the physical disk to shred or recover. The data only exists in a readable state within temporary active memory."
+      </blockquote>
+<h3>Portable Lockers for USB Drives</h3>
+<p>Need to transport a sensitive PDF on a flash drive? Standard passwords leave the file vulnerable to brute-force attacks. Dedicated security software allows you to convert your encrypted vault into a self-executable portable locker. You can place this file on a <a href="https://techleez.co.uk/why-you-should-password-protect-your-usb-drive/" rel="noopener noreferrer" target="_blank">USB drive</a> or burn it to a CD. When you plug it into another computer, you don't even need to install the security software—the executable runs independently, prompting for a password to decrypt the PDFs inside.</p><figure class="content-image">
+<img alt="Portable executable vault for carrying encrypted PDF files on a USB drive" loading="lazy" src="https://i.ibb.co/zWNmXR90/Executable-Vault-Metaphor.jpg"/>
+</figure>
+</div>
+</section>
+<!-- NEW DEEP DIVE: CLOUD & SHARING (DERIVED FROM CONTEXT) -->
+<section class="section section-alt" id="cloud-sharing">
+<div class="container-reading">
+<h2>Secure Cloud Syncing and File Sharing</h2>
+<p>The biggest vulnerability in document security usually occurs when moving a file. Emailing a password-protected PDF alongside the password itself defeats the purpose of encryption.</p>
+<h3>Encrypting Before the Cloud</h3>
+<p>Standard cloud services like Google Drive, Dropbox, and OneDrive are incredibly convenient, but they manage your encryption keys. If their servers are compromised, your data could be exposed. The safest approach is <a href="https://www.windowscentral.com/how-encrypt-data-storing-it-cloud-and-why-you-should" rel="noopener noreferrer" target="_blank">client-side encryption</a>. By integrating offline security software directly with your cloud accounts, you can create a dedicated locker *inside* your Dropbox or Google Drive. Your PDFs are encrypted locally on your machine first, and only the unreadable, scrambled data is synced to the cloud.</p>
+<p>Because the software supports cross-platform syncing, you can access these <a href="https://www.cloudwards.net/best-encryption-software/" rel="noopener noreferrer" target="_blank">AES-256 encrypted PDFs</a> seamlessly across your Windows PC, Mac, iOS, or Android devices.</p><figure class="content-image">
+<img alt="Secured cloud ecosystem for encrypted PDF syncing across devices" loading="lazy" src="https://i.ibb.co/WvhfWD26/Secured-Cloud-Ecosystem.jpg"/>
+</figure>
+<h3>Asymmetric Sharing Without Passwords</h3>
+<p>How do you share a highly classified PDF with a colleague without sending them a vulnerable password via email? Advanced tools use <a href="https://newsoftwaresinc.newswire.com/news/unveiling-the-achilles-heel-the-major-disadvantage-of-using-a-private-key-for" rel="noopener noreferrer" target="_blank">asymmetric RSA cryptography</a> (public and private keys) to solve this.</p>
+<ul class="editorial-list">
+<li>You select the PDF folder in your secure cloud locker.</li>
+<li>You enter your colleague's email address into the security software's interface to grant permission.</li>
+<li>The software securely transfers the access rights.</li>
+<li>Your colleague logs into their own security app using their *own* credentials to access the shared PDF. No passwords are ever transmitted or exchanged.</li>
+</ul><figure class="content-image">
+<img alt="Secure file transfer without sharing PDF passwords by email" loading="lazy" src="https://i.ibb.co/4RQm9JNL/secure-transfer-without-password-sharing.jpg"/>
+</figure>
+</div>
+</section>
+<!-- S5 WHY RECOMMEND (PREMIUM SAAS MOMENT) -->
+<section class="saas-band" id="recommendation">
+<div class="container-wide saas-grid">
+<div>
+<span class="quick-answer-label" style="color: rgba(255,255,255,0.6);">The Tool We Recommend for Most Users</span>
+<h2>Why we recommend <a href="https://cloudstorageinfo.org/folder-lock-review" rel="noopener noreferrer" target="_blank">Folder Lock</a> for serious document protection</h2>
+<p>If you only need to protect a single non-sensitive PDF once a year, Mac Preview or a built-in OS tool is fine. But for professionals who handle sensitive files regularly, those methods are inefficient and leave data vulnerable.</p>
+<p><strong>Folder Lock</strong> bridges the gap between ease-of-use and military-grade security. Instead of encrypting files one-by-one, it allows you to create dynamic lockers that grow automatically as you add data. You can secure up to 1GB of PDFs entirely for free. The Pro version removes all size limitations, enabling you to lock entire hard drives, wipe empty disk space beyond recovery, and sync encrypted data across 5 different devices simultaneously.</p>
+<p>Whether you need to hide a folder locally, create a portable USB vault, or securely share an Excel or PDF file via Dropbox without transmitting a password, it handles the entire workflow offline.</p>
+<div style="display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;">
+<a class="btn btn-primary" href="https://www.newsoftwares.net/download/folderlock10-en/folderlock10-en.exe" rel="noopener noreferrer" style="background: var(--color-white); color: var(--color-saas-band); border-color: var(--color-white);" target="_blank">Try Folder Lock Free →</a>
+<a class="btn btn-outline" href="https://store.newsoftwares.net/?add=fl10" rel="noopener noreferrer" style="border-color: rgba(255,255,255,0.4); color: var(--color-white);" target="_blank">View the Full Version →</a>
+</div>
+<p style="font-size: 0.8rem; margin-top: 12px; color: rgba(255,255,255,0.5);">Folder Lock is developed by NewSoftwares.net and is available for Windows, macOS, iOS, and Android.</p>
+</div>
+<div>
+<!-- Visual representation of the dashboard -->
+<div class="terminal-dashboard" style="background: linear-gradient(145deg, #182a25, #0f1c19); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 24px; box-shadow: 0 24px 48px rgba(0,0,0,0.4);"><div class="product-visual-stack"><figure class="content-image product-screen">
+<img alt="Folder Lock 10 lockers screen for managing encrypted PDF vaults" loading="lazy" src="https://i.ibb.co/V0KrRygF/folder-lock-10-lockers-screen.png"/>
+</figure><figure class="content-image product-boxshot">
+<img alt="Folder Lock 10 software boxshot for professional document protection" loading="lazy" src="https://i.ibb.co/V0Sw4tk7/folder-lock-10-boxshot.png"/>
+</figure></div>
+<div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 20px;">
+<div style="font-weight: 700;">Folder Lock Workspace</div>
+<div style="color: #4ade80;">AES-256 Active</div>
+</div>
+<div style="display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+<div style="flex-grow: 1;">
+<div style="font-size: 0.875rem; font-weight: 600;">Desktop Locker (Local)</div>
+<div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Kernel-Level Protection</div>
+</div>
+<div style="color: #4ade80; font-size: 0.8rem; font-weight: 700;">SECURED</div>
+</div>
+<div style="display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
+<div style="flex-grow: 1;">
+<div style="font-size: 0.875rem; font-weight: 600;">Google Drive Locker</div>
+<div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Cloud Synced</div>
+</div>
+<div style="color: #4ade80; font-size: 0.8rem; font-weight: 700;">SECURED</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- S20 FAQ -->
+<section class="section container-wide" id="faq">
+<div style="max-width: 760px; margin: 0 auto 3rem; text-align: center;">
+<h2>Frequently Asked Questions</h2>
+<p>Common questions about document protection, answered.</p>
+</div><figure class="content-image faq-image">
+<img alt="Security shield protecting private documents and encrypted files" loading="lazy" src="https://i.ibb.co/bjywWFhL/security-shield-protecting.jpg"/>
+</figure>
+<div class="faq-masonry">
+<div class="faq-card">
+<h3 style="font-size: 1.125rem; margin-top:0;">Can I password protect a PDF in Adobe Reader (free)?</h3>
+<p style="margin:0; font-size: 0.95rem;">No. The free Adobe Acrobat Reader only allows you to view PDFs. To apply password protection, Adobe requires a paid subscription to Acrobat Pro.</p>
+</div>
+<div class="faq-card">
+<h3 style="font-size: 1.125rem; margin-top:0;">Is a password-protected PDF fully encrypted?</h3>
+<p style="margin:0; font-size: 0.95rem;">It depends on the tool used. Modern native tools will apply basic encryption, but dedicated offline software like Folder Lock utilizes AES 256-bit encryption, which scrambles the binary data and is virtually unbreakable.</p>
+</div>
+<div class="faq-card">
+<h3 style="font-size: 1.125rem; margin-top:0;">Can I access my locked PDFs on my phone?</h3>
+<p style="margin:0; font-size: 0.95rem;">Yes. If you use a cross-platform tool like Folder Lock, you can sync your encrypted lockers via the cloud and access your secure PDFs using dedicated iOS or Android applications.</p>
+</div>
+<div class="faq-card">
+<h3 style="font-size: 1.125rem; margin-top:0;">What happens if I forget my master password?</h3>
+<p style="margin:0; font-size: 0.95rem;">With true encryption software, there are no backdoors. If you forget your master password to an AES-256 encrypted locker, the data is unrecoverable. It is highly recommended to use a secure password manager to store your credentials.</p>
+</div>
+<div class="faq-card">
+<h3 style="font-size: 1.125rem; margin-top:0;">Is it safe to share a password over email?</h3>
+<p style="margin:0; font-size: 0.95rem;">No. Sending a locked PDF and the password through the same channel is a major security risk. You should use software that allows asymmetric sharing (where the recipient uses their own account credentials) or send the password via a separate, encrypted messaging app.</p>
+</div>
+<div class="faq-card">
+<h3 style="font-size: 1.125rem; margin-top:0;">How do I completely remove a sensitive PDF from my hard drive?</h3>
+<p style="margin:0; font-size: 0.95rem;">Simply hitting "Delete" or emptying the recycle bin leaves recoverable traces on your disk. You must use a "Shred Files" utility (often included in premium security suites) to overwrite the empty disk space multiple times, ensuring the data cannot be forensically recovered.</p>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="site-footer">
+<div class="container-wide">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+<div>
+<a class="logo" href="/" style="color: var(--color-white); margin-bottom: 20px;">
+<span aria-hidden="true" class="brand-mark">
+<svg focusable="false" role="img" viewbox="0 0 48 48">
+<defs>
+<lineargradient id="securityMarkGradient" x1="6" x2="42" y1="6" y2="42">
+<stop offset="0" stop-color="#FFE500"></stop>
+<stop offset="0.52" stop-color="#00FFFF"></stop>
+<stop offset="1" stop-color="#FF00AA"></stop>
+</lineargradient>
+</defs>
+<path d="M24 4 40 10v12c0 10.5-6.8 17.6-16 22C14.8 39.6 8 32.5 8 22V10L24 4Z" fill="#000" stroke="url(#securityMarkGradient)" stroke-width="2.5"></path>
+<path d="M16 25h16M18 19h12M22 13h4M22 31h4" stroke="#FFE500" stroke-linecap="square" stroke-width="2"></path>
+<path d="M17 35 31 13" stroke="#FF00AA" stroke-linecap="square" stroke-width="2"></path>
+</svg>
+</span>
+<span class="brand-text">PDF Security Hub</span></a>
+<p style="color: rgba(255,255,255,0.7); max-width: 300px;">The complete independent guide to document protection, encryption standards, and digital privacy.</p>
+<p style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">Folder Lock is developed by <a href="https://www.newsoftwares.net" rel="noopener noreferrer" style="color: rgba(255,255,255,0.8);" target="_blank">NewSoftwares.net</a>.</p>
+</div>
+<div>
+<h4 style="color: var(--color-white); margin-bottom: 1rem;">Guide Sections</h4>
+<ul style="list-style: none; padding: 0; line-height: 2;">
+<li><a href="#overview" style="color: rgba(255,255,255,0.7); font-weight: 400;">Password Types Explained</a></li>
+<li><a href="#methods" style="color: rgba(255,255,255,0.7); font-weight: 400;">Free Methods</a></li>
+<li><a href="#advanced" style="color: rgba(255,255,255,0.7); font-weight: 400;">Advanced Security</a></li>
+<li><a href="#faq" style="color: rgba(255,255,255,0.7); font-weight: 400;">FAQ</a></li>
+</ul>
+</div>
+</div>
+<div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center;">
+<p style="max-width: 800px; margin: 0 auto 16px; font-size: 0.8rem; color: rgba(255,255,255,0.5);">This site operates as an independent editorial resource. Some links may earn a referral commission at no cost to you. Product recommendations reflect editorial judgment and independent assessment.</p>
+<p>© 2025 PDF Security Hub. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- SCHEMA BLOCK -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "PDF Security Hub",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "name": "How to Password Protect a PDF — Free and Easy Methods 2025",
+        "description": "Learn how to password protect a PDF file using free tools, native OS features, and secure software."
+      }
+    ]
+  }
+  </script>
+<script defer="">
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetSelector = this.getAttribute('href');
+          if (!targetSelector || targetSelector === '#') return;
+          const target = document.querySelector(targetSelector);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (!header) return;
+        if (window.scrollY > 10) {
+          header.style.boxShadow = '0 0 18px rgba(255,229,0,0.18)';
+        } else {
+          header.style.boxShadow = 'none';
+        }
+      });
+
+      const characters = '01#/<>$%&ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const headings = document.querySelectorAll('.decrypt-heading');
+      const decrypt = (element, delay) => {
+        const finalText = element.dataset.decrypt || element.textContent;
+        setTimeout(() => {
+          let frame = 0;
+          element.classList.add('is-decrypting');
+          const timer = setInterval(() => {
+            element.textContent = finalText
+              .split('')
+              .map((char, index) => {
+                if (char === ' ') return ' ';
+                if (index < frame / 2) return finalText[index];
+                return characters[Math.floor(Math.random() * characters.length)];
+              })
+              .join('');
+            frame += 1;
+            if (frame > finalText.length * 2 + 6) {
+              clearInterval(timer);
+              element.textContent = finalText;
+              element.classList.remove('is-decrypting');
+            }
+          }, 34);
+        }, delay);
+      };
+
+      const methods = document.getElementById('methods');
+      if ('IntersectionObserver' in window && methods) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              headings.forEach((heading, index) => decrypt(heading, 1500 + index * 280));
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.25 });
+        observer.observe(methods);
+      } else {
+        headings.forEach((heading, index) => decrypt(heading, 1500 + index * 280));
+      }
+    });
+</script>
+</body>
+</html>
